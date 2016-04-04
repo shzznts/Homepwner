@@ -8,20 +8,24 @@
 
 /* Begin PBXBuildFile section */
 		1E9D09471CB1E4250004DC69 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E9D09461CB1E4250004DC69 /* AppDelegate.swift */; };
-		1E9D09491CB1E4250004DC69 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E9D09481CB1E4250004DC69 /* ViewController.swift */; };
 		1E9D094C1CB1E4250004DC69 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E9D094A1CB1E4250004DC69 /* Main.storyboard */; };
 		1E9D094E1CB1E4250004DC69 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1E9D094D1CB1E4250004DC69 /* Assets.xcassets */; };
 		1E9D09511CB1E4250004DC69 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E9D094F1CB1E4250004DC69 /* LaunchScreen.storyboard */; };
+		1E9D09591CB1E4AD0004DC69 /* ItemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E9D09581CB1E4AD0004DC69 /* ItemsViewController.swift */; };
+		1E9D095B1CB1E5610004DC69 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E9D095A1CB1E5610004DC69 /* Item.swift */; };
+		1E9D095D1CB1EA1D0004DC69 /* ItemStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E9D095C1CB1EA1D0004DC69 /* ItemStore.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		1E9D09431CB1E4250004DC69 /* Homepwner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Homepwner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1E9D09461CB1E4250004DC69 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		1E9D09481CB1E4250004DC69 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		1E9D094B1CB1E4250004DC69 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1E9D094D1CB1E4250004DC69 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1E9D09501CB1E4250004DC69 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1E9D09521CB1E4250004DC69 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1E9D09581CB1E4AD0004DC69 /* ItemsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ItemsViewController.swift; path = ../ItemsViewController.swift; sourceTree = "<group>"; };
+		1E9D095A1CB1E5610004DC69 /* Item.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Item.swift; path = ../Item.swift; sourceTree = "<group>"; };
+		1E9D095C1CB1EA1D0004DC69 /* ItemStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ItemStore.swift; path = ../ItemStore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,8 +58,10 @@
 		1E9D09451CB1E4250004DC69 /* Homepwner */ = {
 			isa = PBXGroup;
 			children = (
+				1E9D095A1CB1E5610004DC69 /* Item.swift */,
+				1E9D095C1CB1EA1D0004DC69 /* ItemStore.swift */,
+				1E9D09581CB1E4AD0004DC69 /* ItemsViewController.swift */,
 				1E9D09461CB1E4250004DC69 /* AppDelegate.swift */,
-				1E9D09481CB1E4250004DC69 /* ViewController.swift */,
 				1E9D094A1CB1E4250004DC69 /* Main.storyboard */,
 				1E9D094D1CB1E4250004DC69 /* Assets.xcassets */,
 				1E9D094F1CB1E4250004DC69 /* LaunchScreen.storyboard */,
@@ -135,7 +141,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1E9D09491CB1E4250004DC69 /* ViewController.swift in Sources */,
+				1E9D09591CB1E4AD0004DC69 /* ItemsViewController.swift in Sources */,
+				1E9D095B1CB1E5610004DC69 /* Item.swift in Sources */,
+				1E9D095D1CB1EA1D0004DC69 /* ItemStore.swift in Sources */,
 				1E9D09471CB1E4250004DC69 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
