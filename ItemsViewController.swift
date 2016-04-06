@@ -39,21 +39,46 @@ class ItemsViewController: UITableViewController {
         if fromIndex == toIndex {
             return
         }
-        
+//        print("from: \(fromIndex), to: \(toIndex)")
         let movedItem = itemStore.allItems[fromIndex]
         itemStore.allItems.removeAtIndex(fromIndex)
         itemStore.allItems.insert(movedItem, atIndex: toIndex)
+    }
+    
+    override func tableView(tableView: UITableView, targetIndexPathForMoveFromRowAtIndexPath sourceIndexPath: NSIndexPath, toProposedIndexPath proposedDestinationIndexPath: NSIndexPath) -> NSIndexPath {
+//        print("source: \(sourceIndexPath), dest: \(proposedDestinationIndexPath)")
+        if sourceIndexPath.row == self.itemStore.allItems.count || proposedDestinationIndexPath.row == self.itemStore.allItems.count {
+            return sourceIndexPath
+        }
+        return proposedDestinationIndexPath
     }
     
     override func tableView(tableView: UITableView, moveRowAtIndexPath sourceIndexPath: NSIndexPath, toIndexPath destinationIndexPath: NSIndexPath) {
         moveItemAtIndex(sourceIndexPath.row, toIndex: destinationIndexPath.row)
     }
     
+    override func tableView(tableView: UITableView, editingStyleForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCellEditingStyle {
+        if indexPath.row == itemStore.allItems.count {
+            return .None
+        }
+        return .Delete
+    }
+    
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
             let item = itemStore.allItems[indexPath.row]
-            itemStore.removeItem(item)
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+            let title = "Delete \(item.name)"
+            let message = "Are you sure you want to delete this item?"
+            let ac = UIAlertController(title: title, message: message, preferredStyle: .ActionSheet)
+            let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+            ac.addAction(cancelAction)
+            
+            let deleteAction = UIAlertAction(title: "Remove", style: .Destructive, handler: {(action) -> Void in
+                self.itemStore.removeItem(item)
+                self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+            })
+            ac.addAction(deleteAction)
+            presentViewController(ac, animated: true, completion: nil)
         }
     }
     
@@ -62,26 +87,29 @@ class ItemsViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("UITableViewCell", forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier("ItemCell", forIndexPath: indexPath) as! ItemCell
+        cell.updateLabels()
         if indexPath.row == itemStore.allItems.count {
-            cell.textLabel?.text = "No more items!"
-            cell.detailTextLabel?.text = ""
+            cell.nameLabel.text = "No more items!"
             return cell
         }
         
         let item = itemStore.allItems[indexPath.row]
         
-        cell.textLabel?.text = item.name
-        cell.detailTextLabel?.text = "$\(item.valueInDollars)"
+        cell.nameLabel.text = item.name
+        cell.serialNumberLabel.text = item.serialNumber
+        cell.valueLabel.text = "$\(item.valueInDollars)"
         
         return cell
     }
     
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        if indexPath.row == itemStore.allItems.count {
-            return 34
-        } else {
-            return 60
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "ShowItem" {
+            if let row = tableView.indexPathForSelectedRow?.row {
+                let item = itemStore.allItems[row]
+                let detailViewController = segue.destinationViewController as! DetailViewController
+                detailViewController.item = item
+            }
         }
     }
     
@@ -92,6 +120,8 @@ class ItemsViewController: UITableViewController {
         let insets = UIEdgeInsets(top: statusBarHeight, left: 0, bottom: 0, right: 0)
         tableView.contentInset = insets
         tableView.scrollIndicatorInsets = insets
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 65
         
     }
 }

@@ -14,6 +14,8 @@
 		1E9D09591CB1E4AD0004DC69 /* ItemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E9D09581CB1E4AD0004DC69 /* ItemsViewController.swift */; };
 		1E9D095B1CB1E5610004DC69 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E9D095A1CB1E5610004DC69 /* Item.swift */; };
 		1E9D095D1CB1EA1D0004DC69 /* ItemStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E9D095C1CB1EA1D0004DC69 /* ItemStore.swift */; };
+		40DB3AF21CB442CE00604E06 /* ItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40DB3AF11CB442CE00604E06 /* ItemCell.swift */; };
+		40DB3AF41CB4DA8B00604E06 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40DB3AF31CB4DA8B00604E06 /* DetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,8 @@
 		1E9D09581CB1E4AD0004DC69 /* ItemsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ItemsViewController.swift; path = ../ItemsViewController.swift; sourceTree = "<group>"; };
 		1E9D095A1CB1E5610004DC69 /* Item.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Item.swift; path = ../Item.swift; sourceTree = "<group>"; };
 		1E9D095C1CB1EA1D0004DC69 /* ItemStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ItemStore.swift; path = ../ItemStore.swift; sourceTree = "<group>"; };
+		40DB3AF11CB442CE00604E06 /* ItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ItemCell.swift; path = ../ItemCell.swift; sourceTree = "<group>"; };
+		40DB3AF31CB4DA8B00604E06 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,7 +62,9 @@
 		1E9D09451CB1E4250004DC69 /* Homepwner */ = {
 			isa = PBXGroup;
 			children = (
+				40DB3AF11CB442CE00604E06 /* ItemCell.swift */,
 				1E9D095A1CB1E5610004DC69 /* Item.swift */,
+				40DB3AF31CB4DA8B00604E06 /* DetailViewController.swift */,
 				1E9D095C1CB1EA1D0004DC69 /* ItemStore.swift */,
 				1E9D09581CB1E4AD0004DC69 /* ItemsViewController.swift */,
 				1E9D09461CB1E4250004DC69 /* AppDelegate.swift */,
@@ -144,7 +150,9 @@
 				1E9D09591CB1E4AD0004DC69 /* ItemsViewController.swift in Sources */,
 				1E9D095B1CB1E5610004DC69 /* Item.swift in Sources */,
 				1E9D095D1CB1EA1D0004DC69 /* ItemStore.swift in Sources */,
+				40DB3AF41CB4DA8B00604E06 /* DetailViewController.swift in Sources */,
 				1E9D09471CB1E4250004DC69 /* AppDelegate.swift in Sources */,
+				40DB3AF21CB442CE00604E06 /* ItemCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -294,6 +302,7 @@
 				1E9D09571CB1E4250004DC69 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
