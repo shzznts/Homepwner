@@ -10,22 +10,18 @@ import UIKit
 
 class ItemsViewController: UITableViewController {
     var itemStore: ItemStore!
+    var imageStore: ImageStore!
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        navigationItem.leftBarButtonItem = editButtonItem()
+    }
     
     @IBAction func addNewItem(sender: AnyObject) {
         let newItem = itemStore.createItem()
         if let index = itemStore.allItems.indexOf(newItem) {
             let indexPath = NSIndexPath(forRow: index, inSection: 0)
             self.tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
-        }
-    }
-    
-    @IBAction func toggleEditingMode(sender: AnyObject) {
-        if self.editing {
-            sender.setTitle("Edit", forState: .Normal)
-            self.setEditing(false, animated: true)
-        } else {
-            sender.setTitle("Done", forState: .Normal)
-            self.setEditing(true, animated: true)
         }
     }
     
@@ -58,9 +54,6 @@ class ItemsViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, editingStyleForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCellEditingStyle {
-        if indexPath.row == itemStore.allItems.count {
-            return .None
-        }
         return .Delete
     }
     
@@ -75,6 +68,7 @@ class ItemsViewController: UITableViewController {
             
             let deleteAction = UIAlertAction(title: "Remove", style: .Destructive, handler: {(action) -> Void in
                 self.itemStore.removeItem(item)
+                self.imageStore.deleteImageForKey(item.itemKey)
                 self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
             })
             ac.addAction(deleteAction)
@@ -83,16 +77,12 @@ class ItemsViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return itemStore.allItems.count + 1
+        return itemStore.allItems.count
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("ItemCell", forIndexPath: indexPath) as! ItemCell
         cell.updateLabels()
-        if indexPath.row == itemStore.allItems.count {
-            cell.nameLabel.text = "No more items!"
-            return cell
-        }
         
         let item = itemStore.allItems[indexPath.row]
         
@@ -109,6 +99,7 @@ class ItemsViewController: UITableViewController {
                 let item = itemStore.allItems[row]
                 let detailViewController = segue.destinationViewController as! DetailViewController
                 detailViewController.item = item
+                detailViewController.imageStore = imageStore
             }
         }
     }
@@ -116,13 +107,8 @@ class ItemsViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let statusBarHeight = UIApplication.sharedApplication().statusBarFrame.height
-        let insets = UIEdgeInsets(top: statusBarHeight, left: 0, bottom: 0, right: 0)
-        tableView.contentInset = insets
-        tableView.scrollIndicatorInsets = insets
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 65
-        
     }
     
     override func viewWillAppear(animated: Bool) {

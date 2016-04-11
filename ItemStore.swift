@@ -10,6 +10,11 @@ import UIKit
 
 class ItemStore {
     var allItems = [Item]()
+    let itemArchiveURL: NSURL = {
+        let documentDirectories = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)
+        let documentDirectory = documentDirectories.first!
+        return documentDirectory.URLByAppendingPathComponent("items.archive")
+    }()
     
     func createItem() -> Item {
         let newItem = Item(random: true)
@@ -23,9 +28,9 @@ class ItemStore {
         }
     }
     
-    init() {
-        for _ in 0..<5 {
-            createItem()
-        }
-    }
+//    init() {
+//        for _ in 0..<5 {
+//            createItem()
+//        }
+//    }
 }
