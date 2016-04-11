@@ -28,6 +28,17 @@ class ItemStore {
         }
     }
     
+    func saveChanges() -> Bool {
+        print("Save items to: \(itemArchiveURL.path!)")
+        return NSKeyedArchiver.archiveRootObject(allItems, toFile: itemArchiveURL.path!)
+    }
+    
+    init() {
+        if let archivedItems = NSKeyedUnarchiver.unarchiveObjectWithFile(itemArchiveURL.path!) as? [Item] {
+            allItems += archivedItems
+        }
+    }
+    
 //    init() {
 //        for _ in 0..<5 {
 //            createItem()
